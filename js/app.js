@@ -1,22 +1,34 @@
 'use strict';
 
-// Cart constructor.
+// Cart constructor. pass in empty aray to initiate
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
   this.items = items;
 };
 
 Cart.prototype.addItem = function(product, quantity) {
-  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  // TODO: Fill in this instance method to create a new CartItem and add it to this.items COMPLETE
+  const newCartItem = new CartItem(product, quantity);
+  this.items.push(newCartItem);
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  localStorage.setItem(CartItem.product, JSON.stringify(Cart.items));
+  console.log('this is what is in local storage: ' + localStorage.getItem(CartItem.product));
+  
 };
 
 Cart.prototype.removeItem = function(item) {
-  // TODO: Fill in this instance method to remove one item from the cart.
+  // TODO: Fill in this instance method to remove one item from the cart. COMPLETE
   // Note: You will have to decide what kind of parameter to pass in here!
+  // Splice: 1. position in array to be deleted, 2. how many positions to be deleted
+  for (let i = 0; i < this.items.length; i += 1) {
+    if (this.items[i].product === item) {
+      this.items.splice(this.items[i]);
+    }
+  }
+  
 };
 
 const CartItem = function(product, quantity) {
@@ -24,7 +36,7 @@ const CartItem = function(product, quantity) {
   this.quantity = quantity;
 };
 
-// Product contructor.
+// Product constructor.
 const Product = function(filePath, name) {
   this.filePath = filePath;
   this.name = name;

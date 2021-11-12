@@ -2,8 +2,8 @@
 'use strict';
 
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
-const table = document.getElementById('cart');
-table.addEventListener('click', removeItemFromCart);
+const tableElem = document.getElementById('cart');
+tableElem.addEventListener('click', removeItemFromCart);
 let cart;
 
 function loadCart() {
@@ -18,6 +18,7 @@ function renderCart() {
   loadCart();
   clearCart();
   showCart();
+  
 }
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
@@ -25,9 +26,9 @@ function clearCart() {
   
   // start iteration at 1 to keep header row
 
-  // for (let i = 1; i < tableElem.rows.length; i += 1) {
-  //   tableElem.deleteRow(i);
-  // }
+  for (let i = 1; i < tableElem.rows.length; i += 1) {
+    document.getElementById('cart').deleteRow(i);
+  }
 
 }
 
@@ -35,7 +36,6 @@ function clearCart() {
 function showCart() {
 
   // TODO: Find the table body
-  const tableElem = document.getElementById('cart');
   // TODO: Iterate over the items in the cart
   // TODO: Create a TR
   // TODO: Create a TD for the delete link, quantity,  and the item
@@ -47,19 +47,15 @@ function showCart() {
     tableElem.appendChild(tableRowElem);
     tableRowElem.setAttribute('id', `data-row-${i}`)
 
-    // test data row
-    const testTableDataElem = document.createElement('td');
-    tableRowElem.appendChild(testTableDataElem);
 
+    //console.log('table.rows[0].cells.length = ' + table.rows[0].cells.length)
 
-    console.log('table.rows[0].cells.length = ' + table.rows[0].cells.length)
-
-    for (let j = 0; j < table.rows[0].cells.length; j += 1) {
+    for (let j = 0; j < tableElem.rows[0].cells.length; j += 1) {
       const tableDataElem = document.createElement('td');
       tableRowElem.appendChild(tableDataElem);
 
       if (j === 0) {
-        tableDataElem.textContent = 'X'; // Update Later
+        tableDataElem.textContent = 'X';
         tableDataElem.setAttribute('id', `delete-btn-${i}`);
         console.log('tableDataElem Id: ' + tableDataElem.getAttribute('id'));
       } else if (j === 1) {

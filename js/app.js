@@ -27,7 +27,7 @@ Cart.prototype.removeItem = function(item) {
   for (let i = 0; i < this.items.length; i += 1) {
     if (this.items[i].product === item) {
       this.items.splice(this.items[i], 1);
-      document.deleteRow(table.rows[i]);
+      document.getElementById('cart').deleteRow(i + 1); // Update later
     }
   }
   

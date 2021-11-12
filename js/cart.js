@@ -8,9 +8,8 @@ let cart;
 
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const testItems = ['banana', 5];
-  cart = new Cart(testItems);
-  console.log(testItems);
+  cart = new Cart(cartItems);
+  console.log('cart: ' + cart);
   
 }
 
@@ -40,13 +39,17 @@ function showCart() {
   // TODO: Create a TR
   // TODO: Create a TD for the delete link, quantity,  and the item
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
+  console.log('Cart Items: ' + cart.items.length);
+  console.log('Cart Item: ' + cart.items[0][0])
   for (let i = 0; i < cart.length; i += 1) {
     const tableRowElem = document.createElement('tr');
     tableElem.appendChild(tableRowElem);
     for (let j = 0; j < table.row.length; i += 1) {
       const tableDataElem = document.createElement('td');
       tableRowElem.appendChild(tableDataElem);
-      
+      const storedItem = localStorage.getItem('cart');
+      console.log(storedItem);
+
     }
   }
   

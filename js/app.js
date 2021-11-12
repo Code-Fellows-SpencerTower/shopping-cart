@@ -14,8 +14,8 @@ Cart.prototype.addItem = function(product, quantity) {
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
-  localStorage.setItem(CartItem.product, JSON.stringify(Cart.items));
-  console.log('this is what is in local storage: ' + localStorage.getItem(CartItem.product));
+  localStorage.setItem('cart', JSON.stringify(this.items));
+  console.log('this is what is in local storage: ' + localStorage.getItem('cart'));
   
 };
 
@@ -25,7 +25,7 @@ Cart.prototype.removeItem = function(item) {
   // Splice: 1. position in array to be deleted, 2. how many positions to be deleted
   for (let i = 0; i < this.items.length; i += 1) {
     if (this.items[i].product === item) {
-      this.items.splice(this.items[i]);
+      this.items.splice(this.items[i], 1);
     }
   }
   

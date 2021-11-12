@@ -24,9 +24,12 @@ Cart.prototype.removeItem = function(item) {
   // Note: You will have to decide what kind of parameter to pass in here!
   // Splice: 1. position in array to be deleted, 2. how many positions to be deleted
   
-  for (let i = 0; i < this.items.length; i += 1) {
+  for (let i = 0; i <= this.items.length; i += 1) {
     if (this.items[i].product === item) {
       this.items.splice(this.items[i], 1);
+      // const itemIdName = this.items[i].product; // product name same as product id
+      // const itemIdElem = document.getElementById(`data-row-${itemIdName}`);
+      
       document.getElementById('cart').deleteRow(i + 1); // Update later
     }
   }
@@ -69,8 +72,7 @@ function generateCatalog() {
   new Product('assets/wine-glass.jpg', 'Wine Glass');
 }
 
-const newCart = new Cart([]);
-newCart.addItem('shark', 3);
+
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();

@@ -45,7 +45,8 @@ function showCart() {
 
     const tableRowElem = document.createElement('tr');
     tableElem.appendChild(tableRowElem);
-    tableRowElem.setAttribute('id', `data-row-${i}`)
+    const itemName = cart.items[i].product;
+    tableRowElem.setAttribute('id', `data-row-${itemName}`)
 
 
     //console.log('table.rows[0].cells.length = ' + table.rows[0].cells.length)

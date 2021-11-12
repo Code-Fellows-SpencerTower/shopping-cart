@@ -23,9 +23,11 @@ Cart.prototype.removeItem = function(item) {
   // TODO: Fill in this instance method to remove one item from the cart. ** COMPLETE **
   // Note: You will have to decide what kind of parameter to pass in here!
   // Splice: 1. position in array to be deleted, 2. how many positions to be deleted
+  
   for (let i = 0; i < this.items.length; i += 1) {
     if (this.items[i].product === item) {
       this.items.splice(this.items[i], 1);
+      document.deleteRow(table.rows[i]);
     }
   }
   
@@ -43,6 +45,7 @@ const Product = function(filePath, name) {
   Product.allProducts.push(this);
 };
 Product.allProducts = [];
+
 
 function generateCatalog() {
   new Product('assets/bag.jpg', 'Bag');

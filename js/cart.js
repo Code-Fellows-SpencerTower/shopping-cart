@@ -22,9 +22,10 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  const tableElem = document.getElementById('cart');
+  
   // start iteration at 1 to keep header row
-  // for (let i = 0; i < tableElem.rows.length; i += 1) {
+
+  // for (let i = 1; i < tableElem.rows.length; i += 1) {
   //   tableElem.deleteRow(i);
   // }
 
@@ -44,9 +45,12 @@ function showCart() {
 
     const tableRowElem = document.createElement('tr');
     tableElem.appendChild(tableRowElem);
+    tableRowElem.setAttribute('id', `data-row-${i}`)
+
     // test data row
     const testTableDataElem = document.createElement('td');
     tableRowElem.appendChild(testTableDataElem);
+
 
     console.log('table.rows[0].cells.length = ' + table.rows[0].cells.length)
 
@@ -55,7 +59,9 @@ function showCart() {
       tableRowElem.appendChild(tableDataElem);
 
       if (j === 0) {
-        tableDataElem.textContent = 'Delete Link'; // Update Later
+        tableDataElem.textContent = 'X'; // Update Later
+        tableDataElem.setAttribute('id', `delete-btn-${i}`);
+        console.log('tableDataElem Id: ' + tableDataElem.getAttribute('id'));
       } else if (j === 1) {
         tableDataElem.textContent = cart.items[i].quantity;
       } else if (j === 2) {
@@ -63,8 +69,11 @@ function showCart() {
       }
     }
   }
+}
 
-
+function addEventListener() {
+  const containerElem = document.getElementById('table');
+  containerElem.addEventListener('click', removeItemFromCart);
 }
 
 
@@ -73,6 +82,17 @@ function removeItemFromCart(event) {
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   // TODO: Save the cart back to local storage
   // TODO: Re-draw the cart table
+  const targetId = event.target.id;
+  console.log('targetId: ' + targetId);
+  for (let i = 0; i < cart.items.length; i += 1) {
+    console.log('Current Target Id: ' + `delete-btn-${i}`);
+    if (targetId === `delete-btn-${i}`) {
+      console.log('cart.items[i].product: ' + cart.items[i].product);
+      cart.removeItem(cart.items[i].product);
+    }
+
+  }
+
 
 }
 

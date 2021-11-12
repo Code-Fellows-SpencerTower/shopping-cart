@@ -66,5 +66,8 @@ function generateCatalog() {
   new Product('assets/wine-glass.jpg', 'Wine Glass');
 }
 
+const newCart = new Cart([]);
+newCart.addItem('shark', 3);
+
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
